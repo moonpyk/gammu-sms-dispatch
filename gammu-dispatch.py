@@ -7,9 +7,9 @@ from ConfigParser import ConfigParser, NoSectionError
 import subprocess
 
 LOOKUP_TABLE = [
-    "/etc/gammu-dispatch.conf"
-    "~/gammu-dispatch.conf",
     "./gammu-dispatch.conf",
+    "~/gammu-dispatch.conf",
+    "/etc/gammu-dispatch.conf"
 ]
 
 
