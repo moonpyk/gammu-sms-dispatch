@@ -1,5 +1,5 @@
 # coding=utf-8
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 import os
 import sys
 from ConfigParser import ConfigParser, NoSectionError
@@ -54,7 +54,11 @@ def exec_cmd(syscmd, parsed):
     args.append(parsed['phone'])
     args.append(parsed['message'])
 
-    if subprocess.call(args) != 0:
+    new_env = os.environ.copy()
+    new_env["PHONE"] = parsed['phone']
+    new_env["MESSAGE"] = parsed['message']
+
+    if subprocess.call(args, env=new_env) != 0:
         sys.exit(ERROR_CODES['ERR_DISPATCH_CMD'])
 
 

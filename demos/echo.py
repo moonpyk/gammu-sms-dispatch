@@ -1,14 +1,19 @@
 # coding=utf-8
 from __future__ import print_function, unicode_literals
 
-import sys
+import os
 import subprocess
 
 
 def main(phone, message):
-    subprocess.call(["gammu-smsd-inject", "TEXT", phone, "-text", "Coucou je te réponds"])
+    subprocess.call([
+        "gammu-smsd-inject",
+        "TEXT",
+        phone,
+        "-text",
+        "Coucou je te réponds : {0}".format(message)
+    ])
 
 
 if __name__ == '__main__':
-    rargs = sys.argv[1:]
-    main(rargs[0], rargs[1])
+    main(os.environ["PHONE"], os.environ["MESSAGE"])
