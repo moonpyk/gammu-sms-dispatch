@@ -47,7 +47,7 @@ def exec_cmd(syscmd, parsed):
     args.append(parsed['message'])
 
     if subprocess.call(args) != 0:
-        sys.exit(1)
+        sys.exit(3)
 
 
 def main(argv):
@@ -62,7 +62,7 @@ def main(argv):
     parsed = parse_sms()
 
     if len(parsed) == 0:
-        sys.exit(1)
+        sys.exit(2)
 
     for (order, syscmd) in cmds:
         if parsed["message"].lower() == order:
