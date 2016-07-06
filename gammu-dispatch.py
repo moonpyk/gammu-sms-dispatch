@@ -12,6 +12,13 @@ LOOKUP_TABLE = [
     "/etc/gammu-dispatch.conf"
 ]
 
+ERROR_CODES = {
+    'ERR_CONFIG': 1,
+    'ERR_NO_SMS_FOUND': 2,
+    'ERR_DISPATCH_CMD': 3,
+    'ERR_NOT_PARSED': 4,
+}
+
 
 def open_config():
     cfg = ConfigParser()
@@ -48,27 +55,33 @@ def exec_cmd(syscmd, parsed):
     args.append(parsed['message'])
 
     if subprocess.call(args) != 0:
-        sys.exit(3)
+        sys.exit(ERROR_CODES['ERR_DISPATCH_CMD'])
 
 
-def main(argv):
+def main():
     cfg = open_config()
 
     try:
         cmds = cfg.items('Commands')
 
     except NoSectionError:
-        sys.exit(1)
+        sys.exit(ERROR_CODES['ERR_CONFIG'])
 
     parsed = parse_sms()
 
     if len(parsed) == 0:
-        sys.exit(2)
+        sys.exit(ERROR_CODES['ERR_NO_SMS_FOUND'])
 
+    was_parsed = False
     for (order, syscmd) in cmds:
         if parsed["message"].lower() == order:
+            was_parsed = True
             exec_cmd(syscmd, parsed)
+            break
+
+    if not was_parsed:
+        sys.exit(ERROR_CODES['ERR_NOT_PARSED'])
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
