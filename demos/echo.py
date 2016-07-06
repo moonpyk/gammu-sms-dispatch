@@ -7,7 +7,7 @@ import subprocess
 
 
 def main(phone, message):
-    subprocess.call(["gammu-smsd-inject", "TEXT", phone, "-text", "Coucou je te réponds"])
+    subprocess.call(["/usr/bin/gammu-smsd-inject", "TEXT", phone, "-text", "Coucou je te réponds"])
 
 
 if __name__ == '__main__':
