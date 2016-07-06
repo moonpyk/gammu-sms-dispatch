@@ -1,11 +1,13 @@
 # coding=utf-8
+from __future__ import print_function, unicode_literals
+
 import sys
 
 import subprocess
 
 
 def main(phone, message):
-    subprocess.call(["/usr/bin/gammu-smsd-inject", " TEXT ", phone, " -text ", "Coucou je te réponds"])
+    subprocess.call(["/usr/bin/gammu-smsd-inject", "TEXT", phone, "-text", message])
 
 
 if __name__ == '__main__':
