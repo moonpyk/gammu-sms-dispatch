@@ -1,10 +1,10 @@
 # coding=utf-8
 from __future__ import print_function
+
 import os
+import subprocess
 import sys
 from ConfigParser import ConfigParser, NoSectionError, NoOptionError
-
-import subprocess
 
 LOOKUP_TABLE = [
     "./gammu-dispatch.conf",
@@ -117,8 +117,10 @@ def main():
     was_parsed = False
     final_code = 0
 
+    command = parsed["message"].lower().split(' ')[0]
+
     for (order, syscmd) in cmds:
-        if parsed["message"].lower() == order:
+        if command == order:
             was_parsed = True
             final_code = exec_cmd(syscmd, parsed)
             break
