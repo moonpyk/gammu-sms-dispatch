@@ -159,7 +159,7 @@ def main():
     if 'GAMMU_DISPATCH_LOGGING' in os.environ:
         try:
             logging.basicConfig(level=os.environ['GAMMU_DISPATCH_LOGGING'])
-        except ValueError:
+        except:
             pass
 
     dspth = GammuDispath(cfg)
