@@ -6,8 +6,8 @@ import os
 
 def main(phone, message):
     # la variable est un tableau qui contient dans chaque cellule les arguments
-    arguments = message.split(' ')[1:]
+    arguments = message.split(" ")[1:]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(os.environ["PHONE"], os.environ["MESSAGE"])

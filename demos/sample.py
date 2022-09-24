@@ -6,7 +6,8 @@ import os
 
 def main(phone, message):
     # Code of the program here
-    print(["Coucou", phone, message])
+    print(["Hello", phone, message])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main(os.environ["PHONE"], os.environ["MESSAGE"])
